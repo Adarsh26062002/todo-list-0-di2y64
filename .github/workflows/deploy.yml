@@ -1,0 +1,170 @@
+name: Deploy Todo Application
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - staging
+          - production
+
+jobs:
+  deploy_preview:
+    name: Deploy PR Preview
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Linting and Tests
+        run: |
+          npm run lint
+          npm test
+
+      - name: Build Application
+        run: npm run build
+        env:
+          REACT_APP_ENVIRONMENT: preview
+
+      - name: Deploy to Netlify
+        id: netlify-deploy
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: './build'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy Preview from PR #${{ github.event.number }}"
+          alias: "pr-${{ github.event.number }}"
+          enable-pull-request-comment: true
+          enable-commit-comment: false
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
+
+  deploy_staging:
+    name: Deploy to Staging
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Linting and Tests
+        run: |
+          npm run lint
+          npm test
+
+      - name: Build Application
+        run: npm run build
+        env:
+          REACT_APP_ENVIRONMENT: staging
+
+      - name: Deploy to Netlify (Staging)
+        id: netlify-deploy-staging
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: './build'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy to Staging from commit ${{ github.sha }}"
+          alias: staging
+          production-branch: main
+          production-deploy: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
+      
+      - name: Post-deployment Tests
+        if: steps.netlify-deploy-staging.outputs.deploy-url != ''
+        run: |
+          echo "Running post-deployment tests for staging environment"
+          echo "Deployment URL: ${{ steps.netlify-deploy-staging.outputs.deploy-url }}"
+          # Add commands to run automated tests against the staging environment
+          # For example: npx cypress run --config baseUrl=${{ steps.netlify-deploy-staging.outputs.deploy-url }}
+
+  deploy_production:
+    name: Deploy to Production
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'production'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Linting and Tests
+        run: |
+          npm run lint
+          npm test
+
+      - name: Build Application
+        run: npm run build
+        env:
+          REACT_APP_ENVIRONMENT: production
+          # Add any other production-specific environment variables
+
+      - name: Deploy to Netlify (Production)
+        id: netlify-deploy-prod
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: './build'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy to Production from commit ${{ github.sha }}"
+          production-branch: main
+          production-deploy: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
+      
+      - name: Post-deployment Validation
+        if: steps.netlify-deploy-prod.outputs.deploy-url != ''
+        run: |
+          echo "Running post-deployment validation for production environment"
+          echo "Deployment URL: ${{ steps.netlify-deploy-prod.outputs.deploy-url }}"
+          # Add commands to verify the production deployment
+          # For example: curl -f ${{ steps.netlify-deploy-prod.outputs.deploy-url }}
+      
+      - name: Run Lighthouse CI
+        if: steps.netlify-deploy-prod.outputs.deploy-url != ''
+        run: |
+          npm install -g @lhci/cli@0.9.x
+          lhci autorun --upload.target=temporary-public-storage --collect.url=${{ steps.netlify-deploy-prod.outputs.deploy-url }}
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
