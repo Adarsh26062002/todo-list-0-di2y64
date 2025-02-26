@@ -1,0 +1,88 @@
+/* Footer component styles
+ * Displays todo count and filtering options
+ * Part of the Todo List application
+ */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-top: 1px solid #e6e6e6;
+  color: #777777;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+/* Todo count display styling */
+.todo-count {
+  text-align: left;
+}
+
+.todo-count strong {
+  font-weight: 600;
+}
+
+/* Filter controls */
+.filters {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.filters li {
+  margin: 0 4px;
+}
+
+.filters a {
+  color: #777777;
+  text-decoration: none;
+  padding: 3px 7px;
+  border-radius: 3px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.filters a:hover {
+  border-color: rgba(175, 47, 47, 0.1);
+}
+
+.filters a.selected {
+  color: #26c6da;
+  font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  /* Mobile styles */
+  .footer {
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .todo-count {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  
+  .filters a {
+    font-size: 12px;
+    padding: 3px 5px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Tablet styles */
+  .footer {
+    padding: 15px;
+  }
+  
+  .todo-count {
+    font-size: 13px;
+  }
+  
+  .filters a {
+    font-size: 13px;
+  }
+}
