@@ -1,0 +1,111 @@
+/* 
+ * TodoList.css
+ * Styling for the TodoList component which displays a filtered list of todo items.
+ * Provides layout and visual styling for the list container and handles empty states.
+ */
+
+/* Main container for todo list with positioning context and proper spacing */
+.todo-list-container {
+  position: relative;
+  padding: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 550px; /* Maximum width for larger screens */
+}
+
+/* Main container for the list of todos with white background and shadow effect */
+.todo-list {
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2),
+              0 25px 50px rgba(0, 0, 0, 0.1);
+  position: relative;
+  border-radius: 0 0 5px 5px;
+}
+
+/* Individual todo item styling with bottom border */
+.todo-list li {
+  position: relative;
+  font-size: 24px;
+  border-bottom: 1px solid #ededed;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+}
+
+/* Removes the border from the last item in the list */
+.todo-list li:last-child {
+  border-bottom: none;
+}
+
+/* Styling for the empty state message when no todos exist */
+.todo-list-empty {
+  text-align: center;
+  padding: 20px;
+  color: #777777;
+  font-style: italic;
+  font-size: 20px;
+  border-top: 1px solid #ededed;
+}
+
+/* Initial state for todo item appearance animation */
+.todo-list-appear {
+  opacity: 0;
+}
+
+/* Animation transition for todo items appearing in the list */
+.todo-list-appear-active {
+  opacity: 1;
+  transition: opacity 300ms ease-out;
+}
+
+/* Media queries */
+/* Styles for smaller screens */
+@media (max-width: 480px) {
+  .todo-list-container {
+    width: 100%; /* Full width on mobile */
+  }
+  
+  .todo-list li {
+    font-size: 16px; /* Smaller text on mobile */
+    padding: 10px;
+    min-height: 50px; /* Match specification for mobile item height */
+  }
+  
+  .todo-list-empty {
+    font-size: 16px;
+    padding: 15px;
+  }
+}
+
+/* Styles for medium-sized screens */
+@media (min-width: 481px) and (max-width: 768px) {
+  .todo-list-container {
+    width: 90%; /* 90% width on tablet */
+  }
+  
+  .todo-list li {
+    font-size: 20px; /* Medium font size */
+    padding: 12px;
+    min-height: 54px; /* Match specification for tablet item height */
+  }
+  
+  .todo-list-empty {
+    font-size: 18px;
+    padding: 18px;
+  }
+}
+
+/* Styles for larger screens */
+@media (min-width: 769px) {
+  .todo-list li {
+    min-height: 58px; /* Match specification for desktop item height */
+  }
+}
+
+/* Support for Right-to-Left languages */
+[dir="rtl"] .todo-list li {
+  text-align: right;
+}
