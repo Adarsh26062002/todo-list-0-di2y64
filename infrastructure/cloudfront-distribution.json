@@ -1,0 +1,141 @@
+{
+  "distributionConfig": {
+    "callerReference": "todo-app-distribution-${timestamp}",
+    "comment": "CloudFront distribution for Todo List application",
+    "defaultRootObject": "index.html",
+    "enabled": true,
+    "isIPV6Enabled": true,
+    "priceClass": "PriceClass_100",
+    "origins": {
+      "items": [
+        {
+          "id": "todo-app-s3-origin",
+          "domainName": "${s3-bucket-name}.s3.amazonaws.com",
+          "s3OriginConfig": {
+            "originAccessIdentity": "origin-access-identity/cloudfront/${origin-access-identity-id}"
+          }
+        }
+      ],
+      "quantity": 1
+    },
+    "defaultCacheBehavior": {
+      "allowedMethods": {
+        "items": [
+          "GET",
+          "HEAD",
+          "OPTIONS"
+        ],
+        "quantity": 3
+      },
+      "cachedMethods": {
+        "items": [
+          "GET",
+          "HEAD"
+        ],
+        "quantity": 2
+      },
+      "compress": true,
+      "defaultTTL": 86400,
+      "forwardedValues": {
+        "cookies": {
+          "forward": "none"
+        },
+        "queryString": false
+      },
+      "maxTTL": 31536000,
+      "minTTL": 0,
+      "smoothStreaming": false,
+      "targetOriginId": "todo-app-s3-origin",
+      "viewerProtocolPolicy": "redirect-to-https"
+    },
+    "cacheBehaviors": {
+      "items": [
+        {
+          "allowedMethods": {
+            "items": [
+              "GET",
+              "HEAD",
+              "OPTIONS"
+            ],
+            "quantity": 3
+          },
+          "cachedMethods": {
+            "items": [
+              "GET",
+              "HEAD"
+            ],
+            "quantity": 2
+          },
+          "compress": true,
+          "defaultTTL": 31536000,
+          "forwardedValues": {
+            "cookies": {
+              "forward": "none"
+            },
+            "queryString": false
+          },
+          "maxTTL": 31536000,
+          "minTTL": 0,
+          "pathPattern": "static/*",
+          "smoothStreaming": false,
+          "targetOriginId": "todo-app-s3-origin",
+          "viewerProtocolPolicy": "redirect-to-https"
+        },
+        {
+          "allowedMethods": {
+            "items": [
+              "GET",
+              "HEAD",
+              "OPTIONS"
+            ],
+            "quantity": 3
+          },
+          "cachedMethods": {
+            "items": [
+              "GET",
+              "HEAD"
+            ],
+            "quantity": 2
+          },
+          "compress": true,
+          "defaultTTL": 0,
+          "forwardedValues": {
+            "cookies": {
+              "forward": "none"
+            },
+            "queryString": false
+          },
+          "maxTTL": 0,
+          "minTTL": 0,
+          "pathPattern": "index.html",
+          "smoothStreaming": false,
+          "targetOriginId": "todo-app-s3-origin",
+          "viewerProtocolPolicy": "redirect-to-https"
+        }
+      ],
+      "quantity": 2
+    },
+    "customErrorResponses": {
+      "items": [
+        {
+          "errorCode": 404,
+          "responseCode": 200,
+          "responsePagePath": "/index.html",
+          "errorCachingMinTTL": 300
+        },
+        {
+          "errorCode": 403,
+          "responseCode": 200,
+          "responsePagePath": "/index.html",
+          "errorCachingMinTTL": 300
+        }
+      ],
+      "quantity": 2
+    },
+    "httpVersion": "http2",
+    "viewerCertificate": {
+      "cloudFrontDefaultCertificate": true,
+      "minimumProtocolVersion": "TLSv1.2_2021"
+    }
+  }
+}
