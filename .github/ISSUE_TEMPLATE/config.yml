@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Todo List Documentation
+    url: https://github.com/username/todo-list/blob/main/README.md
+    about: Please check the documentation before opening an issue
+  - name: General Questions
+    url: https://github.com/username/todo-list/discussions
+    about: Please use the discussions forum for general questions
