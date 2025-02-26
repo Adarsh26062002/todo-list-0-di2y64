@@ -55,7 +55,7 @@ jobs:
           path: build
 
       - name: Deploy preview to Netlify
-        uses: nwtgck/actions-netlify@v1.2
+        uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: './build'
           production-branch: 'main'
