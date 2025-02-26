@@ -1,0 +1,44 @@
+{
+  "Version": "2012-10-17",
+  "Id": "TodoAppS3BucketPolicy",
+  "Statement": [
+    {
+      "Sid": "AllowCloudFrontServicePrincipal",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "cloudfront.amazonaws.com"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::${bucket-name}/*",
+      "Condition": {
+        "StringEquals": {
+          "AWS:SourceArn": "arn:aws:cloudfront::${account-id}:distribution/${distribution-id}"
+        }
+      }
+    },
+    {
+      "Sid": "DenyDirectPublicAccess",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::${bucket-name}",
+        "arn:aws:s3:::${bucket-name}/*"
+      ],
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    },
+    {
+      "Sid": "AllowReadAccessFromCloudFront",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${origin-access-identity-id}"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::${bucket-name}/*"
+    }
+  ]
+}
