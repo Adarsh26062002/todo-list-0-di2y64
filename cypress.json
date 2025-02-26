@@ -1,0 +1,29 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "viewportWidth": 1280,
+  "viewportHeight": 800,
+  "defaultCommandTimeout": 5000,
+  "requestTimeout": 10000,
+  "responseTimeout": 10000,
+  "pageLoadTimeout": 30000,
+  "video": true,
+  "videoCompression": 32,
+  "videoUploadOnPasses": false,
+  "screenshotOnRunFailure": true,
+  "screenshotsFolder": "cypress/screenshots",
+  "videosFolder": "cypress/videos",
+  "integrationFolder": "cypress/integration",
+  "fixturesFolder": "cypress/fixtures",
+  "pluginsFile": "cypress/plugins/index.js",
+  "supportFile": "cypress/support/index.js",
+  "testFiles": "**/*_spec.js",
+  "chromeWebSecurity": false,
+  "numTestsKeptInMemory": 50,
+  "retries": {
+    "runMode": 1,
+    "openMode": 0
+  },
+  "env": {
+    "coverage": false
+  }
+}
