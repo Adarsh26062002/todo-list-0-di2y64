@@ -1,0 +1,382 @@
+/* utilities.css - Utility CSS classes for the Todo List application */
+
+/* CSS Variables - Application colors, spacing, and responsive breakpoints */
+:root {
+  --bg-color: #f5f5f5;
+  --item-bg-color: #ffffff;
+  --text-primary: #4d4d4d;
+  --text-secondary: #777777;
+  --accent-color: #26c6da;
+  --completed-color: #d9d9d9;
+  --border-color: #e6e6e6;
+  --error-color: #ff5252;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 20px;
+  --mobile-spacing: 10px;
+  --mobile-width: 480px;
+  --tablet-width: 768px;
+}
+
+/* Color Utilities
+   Classes for applying the application's color palette to elements */
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-completed {
+  color: var(--completed-color);
+}
+
+.text-error {
+  color: var(--error-color);
+}
+
+.bg-main {
+  background-color: var(--bg-color);
+}
+
+.bg-item {
+  background-color: var(--item-bg-color);
+}
+
+.bg-accent {
+  background-color: var(--accent-color);
+}
+
+.border-standard {
+  border: 1px solid var(--border-color);
+}
+
+/* Typography Utilities
+   Classes for text styling according to the application's typography guidelines */
+.text-heading {
+  font-size: 100px;
+  font-weight: 100;
+}
+
+.text-normal {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.text-small {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.font-thin {
+  font-weight: 100;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-regular {
+  font-weight: 400;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+/* Spacing Utilities
+   Classes for applying consistent spacing with margins and paddings */
+.m-0 {
+  margin: 0;
+}
+
+.m-1 {
+  margin: var(--spacing-sm);
+}
+
+.m-2 {
+  margin: var(--spacing-md);
+}
+
+.m-3 {
+  margin: var(--spacing-lg);
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.p-1 {
+  padding: var(--spacing-sm);
+}
+
+.p-2 {
+  padding: var(--spacing-md);
+}
+
+.p-3 {
+  padding: var(--spacing-lg);
+}
+
+.py-1 {
+  padding-top: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+}
+
+.px-1 {
+  padding-left: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
+}
+
+.container-padding {
+  padding: var(--spacing-lg);
+}
+
+/* Display Utilities
+   Classes for controlling element display types */
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-none {
+  display: none;
+}
+
+/* Flex Utilities
+   Classes for flexbox layout control */
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+/* Responsive Utilities
+   Classes that apply only at specific breakpoints based on the application's responsive design specifications */
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: block;
+}
+
+.container-width {
+  width: 550px;
+  max-width: 100%;
+}
+
+/* Visibility Utilities
+   Classes for controlling element visibility */
+.visible {
+  visibility: visible;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+/* Animation Utilities
+   Classes for applying common animations and transitions as specified in the animation specifications */
+.fade-in {
+  animation: fadeIn 300ms ease-out;
+}
+
+.fade-out {
+  animation: fadeOut 300ms ease-in;
+}
+
+.transition-fast {
+  transition: all 150ms ease-in-out;
+}
+
+.transition-normal {
+  transition: all 300ms ease;
+}
+
+.scale-on-hover {
+  transition: transform 150ms ease-in-out;
+}
+
+.scale-on-hover:hover {
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Accessibility Utilities
+   Classes for improving accessibility as per WCAG guidelines mentioned in the specifications */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Miscellaneous Utilities
+   Miscellaneous utility classes */
+.rounded {
+  border-radius: 4px;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.shadow-sm {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+/* Media Queries for responsive design */
+@media (max-width: 480px) {
+  /* Mobile styles */
+  .mobile-only {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .text-heading {
+    font-size: 60px;
+  }
+
+  .text-normal {
+    font-size: 16px;
+  }
+
+  .text-small {
+    font-size: 12px;
+  }
+
+  .container-padding {
+    padding: var(--mobile-spacing);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Tablet styles */
+  .container-width {
+    width: 90%;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Desktop styles */
+  /* Default styles already set above */
+}
