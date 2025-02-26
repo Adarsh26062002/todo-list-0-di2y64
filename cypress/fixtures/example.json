@@ -1,0 +1,24 @@
+{
+  "todos": {
+    "entities": [
+      {
+        "id": "1",
+        "text": "Buy groceries",
+        "completed": false
+      },
+      {
+        "id": "2",
+        "text": "Complete technical specifications",
+        "completed": true
+      },
+      {
+        "id": "3",
+        "text": "Call dentist",
+        "completed": false
+      }
+    ]
+  },
+  "filters": {
+    "status": "all"
+  }
+}
