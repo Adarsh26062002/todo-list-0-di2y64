@@ -1,0 +1,127 @@
+/* 
+* Base CSS file for Todo List Application
+* Contains core styling, resets, typography, and color variables
+* Version: 1.0.0
+*/
+
+/* Color variables */
+:root {
+  --background-color: #f5f5f5;
+  --todo-item-bg: #ffffff;
+  --text-primary: #4d4d4d;
+  --text-secondary: #777777;
+  --accent-color: #26c6da;
+  --completed-color: #d9d9d9;
+  --border-color: #e6e6e6;
+  --error-color: #ff5252;
+}
+
+/* Box model reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base HTML styling */
+html {
+  font-size: 16px;
+}
+
+/* Body styling */
+body {
+  font-family: sans-serif;
+  color: var(--text-primary);
+  background-color: var(--background-color);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1 {
+  font-size: 100px;
+  font-weight: 100;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+/* Button styling */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Form elements */
+input {
+  font-family: inherit;
+  font-size: 24px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  outline: none;
+}
+
+textarea {
+  font-family: inherit;
+  font-size: 24px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  outline: none;
+  resize: vertical;
+}
+
+/* Focus states */
+input:focus {
+  border-color: var(--accent-color);
+}
+
+textarea:focus {
+  border-color: var(--accent-color);
+}
+
+/* Placeholder styling */
+::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.6;
+  font-style: italic;
+}
+
+/* Accessibility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Responsive breakpoints */
+/* Mobile devices */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 60px;
+  }
+  
+  input, textarea {
+    font-size: 16px;
+    padding: 10px;
+  }
+}
+
+/* Tablet devices */
+@media (min-width: 481px) and (max-width: 768px) {
+  h1 {
+    font-size: 80px;
+  }
+  
+  input, textarea {
+    font-size: 20px;
+    padding: 12px;
+  }
+}
