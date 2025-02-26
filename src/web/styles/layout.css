@@ -1,0 +1,115 @@
+/* 
+ * layout.css
+ * Layout and responsive design styles for the Todo List application.
+ * Defines container structure, spacing, and responsive adjustments.
+ */
+
+/* Main container for the entire application */
+.todoapp {
+  width: 100%;
+  max-width: 550px; /* Maximum width for larger screens */
+  margin: 0 auto; /* Center the container */
+  padding: 20px; /* Consistent padding around content */
+}
+
+/* Application header with title and form */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px; /* Space between header and main content */
+}
+
+/* Main content area containing todo list */
+.main {
+  width: 100%;
+  margin-bottom: 20px; /* Space between main content and footer */
+}
+
+/* Footer area with filters and counts */
+.footer {
+  display: flex;
+  justify-content: space-between; /* Spread count and filters */
+  align-items: center;
+  width: 100%;
+  padding: 10px 0; /* Vertical padding only */
+}
+
+/* Container for todo items */
+.todo-list {
+  width: 100%;
+  list-style-type: none; /* Remove default list bullets */
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual todo item container */
+.todo-list li {
+  display: flex;
+  align-items: center;
+  height: 58px; /* Standard height for desktop */
+  padding: 15px; /* Consistent padding around item content */
+}
+
+/* Container for filter buttons */
+.filters {
+  display: flex;
+  gap: 8px; /* Space between filter buttons */
+}
+
+/* Filter button container */
+.filters li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; /* Remove default list bullets */
+}
+
+/* Todo input field */
+.new-todo {
+  width: 100%;
+  padding: 16px; /* Consistent padding inside input */
+  height: 58px; /* Standard height to match todo items */
+}
+
+/* Tablet styles (481px - 768px) */
+@media (max-width: 768px) {
+  .todoapp {
+    width: 90%; /* Slightly narrower on tablets */
+    padding: 15px; /* Reduced padding on smaller screens */
+  }
+  
+  .todo-list li {
+    height: 54px; /* Slightly smaller height on tablets */
+  }
+  
+  .new-todo {
+    height: 54px; /* Match todo item height */
+  }
+}
+
+/* Mobile styles (< 480px) */
+@media (max-width: 480px) {
+  .todoapp {
+    width: 100%; /* Full width on mobile */
+    padding: 10px; /* Minimal padding on small screens */
+  }
+  
+  .footer {
+    flex-direction: column; /* Stack footer elements on mobile */
+    gap: 10px; /* Space between stacked elements */
+  }
+  
+  .filters {
+    width: 100%; 
+    justify-content: center; /* Center filter buttons on mobile */
+  }
+  
+  .todo-list li {
+    height: 50px; /* Smaller height on mobile */
+  }
+  
+  .new-todo {
+    height: 50px; /* Match todo item height */
+    padding: 12px; /* Slightly reduced padding on mobile */
+  }
+}
