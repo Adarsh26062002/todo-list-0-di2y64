@@ -1,0 +1,84 @@
+/* 
+ * Todo List Application Typography
+ * Implements responsive font sizing and consistent typography across the application
+ */
+
+/* Import Inter font with required weights from Google Fonts 
+ * googleapis - latest
+ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700&display=swap');
+
+/* Define CSS variables for fonts and weights */
+:root {
+  --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-secondary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+}
+
+/* Base typography for the entire application */
+body {
+  font-family: var(--font-family-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography for the main application title */
+.app-title {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-thin);
+  font-size: 100px;
+  text-align: center;
+  color: rgba(77, 77, 77, 0.15);
+  margin: 20px 0;
+  line-height: 1.2;
+}
+
+/* Typography for regular text including todo items */
+.text-regular {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-regular);
+  font-size: 24px;
+  line-height: 1.4;
+}
+
+/* Typography for secondary text such as footer information */
+.text-light {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-light);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Typography for input placeholders */
+.placeholder {
+  font-style: italic;
+  font-weight: var(--font-weight-regular);
+  color: #e6e6e6;
+}
+
+/* Responsive typography adjustments for tablet devices */
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 80px;
+  }
+}
+
+/* Responsive typography adjustments for mobile devices */
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 60px;
+  }
+  
+  .text-regular {
+    font-size: 16px;
+  }
+  
+  .text-light {
+    font-size: 12px;
+  }
+}
