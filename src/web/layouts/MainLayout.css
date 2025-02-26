@@ -1,0 +1,108 @@
+/* 
+ * MainLayout.css
+ * 
+ * Provides the overall structure and styling for the Todo application.
+ * Implements responsive layouts and visual presentation for the main app sections.
+ */
+
+/* Main container styling */
+.todoapp {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  background-color: var(--todo-item-bg);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Header section styling */
+.todoapp .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 20px 10px;
+}
+
+/* Main content area */
+.todoapp .main {
+  width: 100%;
+  padding: 0 20px;
+  position: relative;
+}
+
+/* App title styling */
+.todoapp h1 {
+  font-size: 100px;
+  font-weight: 100;
+  text-align: center;
+  color: var(--accent-color);
+  margin: 0;
+  line-height: 1.2;
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+}
+
+/* App title specific styling */
+.todoapp .app-title {
+  margin-bottom: 20px;
+  color: rgba(175, 47, 47, 0.15);
+  text-transform: lowercase;
+}
+
+/* Main section with top border */
+.todoapp section.main {
+  border-top: 1px solid var(--border-color);
+}
+
+/* Error container styling */
+.error-container {
+  padding: 20px;
+  background-color: #fff8f8;
+  border: 1px solid var(--error-color);
+  color: var(--error-color);
+  border-radius: 4px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+/* Tablet responsiveness */
+@media (max-width: 768px) {
+  .todoapp {
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  .todoapp h1 {
+    font-size: 80px;
+  }
+  
+  .todoapp .header,
+  .todoapp .main {
+    padding: 0 15px;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .todoapp {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .todoapp h1 {
+    font-size: 60px;
+  }
+  
+  .todoapp .header,
+  .todoapp .main {
+    padding: 0 10px;
+  }
+  
+  .todoapp section.main {
+    margin-top: 10px;
+  }
+}
